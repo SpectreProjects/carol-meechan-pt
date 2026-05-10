@@ -17,13 +17,14 @@ const phone = '07976 218413';
 const email = 'carolmeechan@aol.com';
 const instagram = 'carolmeechanpt';
 const mailtoHref = (subject) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+const phoneHref = `tel:${phone.replace(/\s/g, '')}`;
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -111,7 +112,7 @@ function Reveal({ children, className = '', delay = 0 }) {
 
 function ButtonLink({ href, children, variant = 'primary', icon: Icon }) {
   const base =
-    'group inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full px-6 py-3.5 text-center text-base font-semibold leading-tight transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal sm:min-h-[4.25rem] sm:w-auto sm:px-10 sm:py-4 sm:text-[1.12rem]';
+    'group relative z-20 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full px-6 py-3.5 text-center text-base font-semibold leading-tight transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal sm:min-h-[4.25rem] sm:w-auto sm:px-10 sm:py-4 sm:text-[1.12rem]';
   const styles =
     variant === 'primary'
       ? 'bg-button-glow text-linen shadow-[0_14px_34px_rgba(44,33,25,.28)] hover:-translate-y-0.5 hover:shadow-[0_18px_46px_rgba(44,33,25,.34)]'
@@ -261,11 +262,11 @@ function Hero() {
                 support lasting change.
               </motion.p>
               <motion.div variants={fadeUp} className="mt-8 grid gap-3 sm:mt-10 sm:flex sm:flex-wrap">
-                <ButtonLink href={`tel:${phone.replace(/\s/g, '')}`} icon={Phone}>
+                <ButtonLink href={phoneHref} icon={Phone}>
                   Call Carol
                 </ButtonLink>
                 <ButtonLink href={mailtoHref('Personal Training Enquiry')} icon={Mail} variant="secondary">
-                  Email Carol
+                  {email}
                 </ButtonLink>
                 <ButtonLink
                   href={`https://instagram.com/${instagram}`}
@@ -317,9 +318,7 @@ function About() {
 
 function DesktopServiceCard({ service, nextService, index, total }) {
   const Icon = service.icon;
-  const serviceEmailHref = `mailto:${email}?subject=${encodeURIComponent(
-    `Enquiry about ${service.title}`,
-  )}`;
+  const serviceEmailHref = mailtoHref(`Enquiry about ${service.title}`);
 
   return (
     <div
@@ -329,10 +328,10 @@ function DesktopServiceCard({ service, nextService, index, total }) {
       <div className="sticky top-[7svh] flex h-[86svh] min-h-[36rem] items-center">
         <motion.article
           className="relative mx-auto w-full"
-          initial={{ opacity: 0, y: 40, rotate: index % 2 === 0 ? -0.8 : 0.8, scale: 0.985 }}
-          whileInView={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.42 }}
-          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           {nextService ? (
             <div
@@ -385,13 +384,22 @@ function DesktopServiceCard({ service, nextService, index, total }) {
               </div>
 
               <div className="mt-auto flex flex-wrap items-end justify-between gap-6 pt-10">
-                <a
-                  href={serviceEmailHref}
-                  className="relative z-20 inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-7 py-4 text-base font-bold text-linen shadow-[0_14px_34px_rgba(44,33,25,.24)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(44,33,25,.3)] focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal lg:text-lg"
-                >
-                  <Mail className="h-5 w-5" />
-                  Enquire about {service.title}
-                </a>
+                <div className="relative z-20 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+                  <a
+                    href={serviceEmailHref}
+                    className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-7 py-4 text-base font-bold text-linen shadow-[0_14px_34px_rgba(44,33,25,.24)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(44,33,25,.3)] focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal lg:text-lg"
+                  >
+                    <Mail className="h-5 w-5" />
+                    Enquire about {service.title}
+                  </a>
+                  <a
+                    href={phoneHref}
+                    className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-linen/24 bg-linen/10 px-7 py-4 text-base font-bold text-linen shadow-[0_10px_28px_rgba(44,33,25,.18)] transition duration-200 hover:-translate-y-0.5 hover:border-linen/42 hover:bg-linen/16 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal lg:text-lg"
+                  >
+                    <Phone className="h-5 w-5" />
+                    Call Carol
+                  </a>
+                </div>
                 <div className="flex min-w-[14rem] flex-1 items-center gap-4">
                   <div className={`h-px flex-1 bg-gradient-to-r ${service.accent} opacity-70`} />
                   <Sparkles className="h-5 w-5 shrink-0 text-ember/70" />
@@ -407,9 +415,7 @@ function DesktopServiceCard({ service, nextService, index, total }) {
 
 function MobileServiceCard({ service, index, total }) {
   const Icon = service.icon;
-  const serviceEmailHref = `mailto:${email}?subject=${encodeURIComponent(
-    `Enquiry about ${service.title}`,
-  )}`;
+  const serviceEmailHref = mailtoHref(`Enquiry about ${service.title}`);
 
   return (
     <Reveal>
@@ -431,13 +437,22 @@ function MobileServiceCard({ service, index, total }) {
           </h3>
           <p className="mt-4 text-base leading-7 text-linen/82">{service.description}</p>
 
-          <a
-            href={serviceEmailHref}
-            className="relative z-20 mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-5 py-3 text-sm font-bold text-linen shadow-[0_12px_30px_rgba(44,33,25,.26)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal"
-          >
-            <Mail className="h-5 w-5" />
-            Enquire about {service.title}
-          </a>
+          <div className="relative z-20 mt-6 grid gap-3">
+            <a
+              href={serviceEmailHref}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-5 py-3 text-sm font-bold text-linen shadow-[0_12px_30px_rgba(44,33,25,.26)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal"
+            >
+              <Mail className="h-5 w-5" />
+              Enquire about {service.title}
+            </a>
+            <a
+              href={phoneHref}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-linen/24 bg-linen/10 px-5 py-3 text-sm font-bold text-linen shadow-[0_10px_24px_rgba(44,33,25,.18)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal"
+            >
+              <Phone className="h-5 w-5" />
+              Call Carol
+            </a>
+          </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {service.includes.map((item) => (
@@ -519,15 +534,18 @@ function WhyChoose() {
       <Reveal className="text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-ember">Why Carol</p>
         <motion.h2
-          className="mx-auto mt-5 max-w-7xl text-[clamp(2.45rem,11.5vw,3.6rem)] font-black leading-[.92] tracking-[-0.065em] text-linen sm:text-[clamp(3.2rem,7.4vw,8.5rem)] sm:leading-[.88] sm:tracking-[-0.07em]"
+          className="mx-auto mt-5 max-w-7xl text-[clamp(2.1rem,9.4vw,3.15rem)] font-black leading-[.98] tracking-[-0.055em] text-linen sm:text-[clamp(3.2rem,7.4vw,8.5rem)] sm:leading-[.88] sm:tracking-[-0.07em]"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="block">Personal training built</span>
-          <span className="block">around your goals,</span>
-          <span className="block">your body and your confidence.</span>
+          <span className="block sm:hidden">Personal training built around</span>
+          <span className="block sm:hidden">your goals, your body</span>
+          <span className="block sm:hidden">and your confidence.</span>
+          <span className="hidden sm:block">Personal training built</span>
+          <span className="hidden sm:block">around your goals,</span>
+          <span className="hidden sm:block">your body and your confidence.</span>
         </motion.h2>
       </Reveal>
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-6">
@@ -575,7 +593,7 @@ function CTA() {
             now, what you need, and the results you want to build.
           </p>
           <div className="mt-10 grid gap-3 sm:flex sm:flex-wrap">
-            <ButtonLink href={`tel:${phone.replace(/\s/g, '')}`} icon={Phone}>
+            <ButtonLink href={phoneHref} icon={Phone}>
               {phone}
             </ButtonLink>
             <ButtonLink href={mailtoHref('Personal Training Enquiry')} icon={Mail} variant="secondary">
@@ -610,11 +628,11 @@ function Footer() {
       <div className="flex flex-col gap-5 text-sm text-linen/54 sm:flex-row sm:items-center sm:justify-between">
         <p>Carol Meechan PT</p>
         <div className="flex flex-wrap gap-4">
-          <a className="transition hover:text-ember" href={`tel:${phone.replace(/\s/g, '')}`}>
+          <a className="transition hover:text-ember" href={phoneHref}>
             Call
           </a>
           <a className="transition hover:text-ember" href={mailtoHref('Personal Training Enquiry')}>
-            Email
+            {email}
           </a>
           <a className="transition hover:text-ember" href={`https://instagram.com/${instagram}`}>
             Instagram

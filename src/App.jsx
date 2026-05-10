@@ -145,7 +145,7 @@ function ECGWaveform() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-[-48vw] top-[47%] z-[1] h-[30rem] w-[190vw] -translate-y-1/2 opacity-[0.09] sm:right-[-16vw] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
+      className="pointer-events-none absolute right-[-48vw] top-[35%] z-[1] h-[28rem] w-[185vw] -translate-y-1/2 opacity-[0.085] sm:right-[-16vw] sm:top-[47%] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
@@ -239,10 +239,10 @@ function Hero() {
                 variants={fadeUp}
                 className="max-w-none font-black uppercase leading-[.78] tracking-[-0.075em] text-white"
               >
-                <span className="block text-[clamp(4.3rem,20vw,6.4rem)] sm:text-[clamp(5rem,18.5vw,15.5rem)]">
+                <span className="block text-[clamp(4.2rem,19vw,6.15rem)] sm:text-[clamp(4.8rem,16.8vw,13.8rem)]">
                   Carol
                 </span>
-                <span className="block text-[clamp(2.85rem,13.2vw,4.65rem)] sm:text-[clamp(4rem,11.6vw,10.8rem)]">
+                <span className="mt-2 block text-[clamp(2.75rem,12.8vw,4.45rem)] sm:mt-0 sm:text-[clamp(3.85rem,10.7vw,9.7rem)]">
                   Meechan PT
                 </span>
               </motion.h1>

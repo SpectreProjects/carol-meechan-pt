@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import {
   Dumbbell,
   HeartPulse,
@@ -12,9 +11,6 @@ import {
 import {
   MotionConfig,
   motion,
-  useScroll,
-  useSpring,
-  useTransform,
 } from 'framer-motion';
 
 const phone = '07976 218413';
@@ -23,11 +19,11 @@ const instagram = 'carolmeechanpt';
 const mailtoHref = (subject) => `mailto:${email}?subject=${encodeURIComponent(subject)}`;
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -115,11 +111,11 @@ function Reveal({ children, className = '', delay = 0 }) {
 
 function ButtonLink({ href, children, variant = 'primary', icon: Icon }) {
   const base =
-    'group inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full px-6 py-3.5 text-center text-base font-semibold leading-tight transition duration-300 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal sm:min-h-[4.25rem] sm:w-auto sm:px-10 sm:py-4 sm:text-[1.12rem]';
+    'group inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full px-6 py-3.5 text-center text-base font-semibold leading-tight transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal sm:min-h-[4.25rem] sm:w-auto sm:px-10 sm:py-4 sm:text-[1.12rem]';
   const styles =
     variant === 'primary'
-      ? 'bg-button-glow text-linen shadow-[0_20px_56px_rgba(44,33,25,.32)] hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-[0_28px_80px_rgba(44,33,25,.4)]'
-      : 'border border-linen/24 bg-linen/12 text-linen shadow-glass backdrop-blur-xl hover:-translate-y-0.5 hover:border-linen/42 hover:bg-linen/20 hover:shadow-[0_24px_70px_rgba(44,33,25,.3)]';
+      ? 'bg-button-glow text-linen shadow-[0_14px_34px_rgba(44,33,25,.28)] hover:-translate-y-0.5 hover:shadow-[0_18px_46px_rgba(44,33,25,.34)]'
+      : 'border border-linen/24 bg-linen/12 text-linen shadow-[0_14px_34px_rgba(44,33,25,.2)] sm:backdrop-blur-md hover:-translate-y-0.5 hover:border-linen/42 hover:bg-linen/20';
 
   return (
     <a href={href} className={`${base} ${styles}`}>
@@ -130,22 +126,12 @@ function ButtonLink({ href, children, variant = 'primary', icon: Icon }) {
 }
 
 function Background() {
-  const { scrollYProgress } = useScroll();
-  const smooth = useSpring(scrollYProgress, { stiffness: 80, damping: 24, mass: 0.3 });
-  const bandY = useTransform(smooth, [0, 1], [0, 160]);
-  const bandRotate = useTransform(smooth, [0, 1], [-10, 8]);
-
   return (
     <>
       <div className="grain" />
-      <motion.div
-        aria-hidden="true"
-        style={{ y: bandY, rotate: bandRotate }}
-        className="fixed left-[-14vw] top-20 z-0 h-40 w-[128vw] bg-[linear-gradient(90deg,transparent,rgba(243,231,217,.18),rgba(95,70,53,.18),transparent)] blur-3xl"
-      />
       <div
         aria-hidden="true"
-        className="fixed inset-x-0 top-0 z-0 h-[38rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,248,238,.18),transparent_54%)]"
+        className="pointer-events-none fixed inset-x-0 top-0 z-0 h-[30rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,248,238,.15),transparent_58%)]"
       />
     </>
   );
@@ -156,25 +142,16 @@ function ECGWaveform() {
     'M0 150 H58 C68 150 71 132 82 132 C93 132 93 150 105 150 H128 C142 150 146 92 164 92 C185 92 175 236 198 236 C221 236 212 150 236 150 H270 C286 150 290 118 306 118 C328 118 324 184 346 184 C363 184 365 150 383 150 H438 C452 150 456 135 470 135 C484 135 484 150 500 150 H524 C543 150 548 76 570 76 C596 76 583 252 612 252 C640 252 628 150 658 150 H692 C709 150 713 116 731 116 C755 116 752 190 776 190 C794 190 796 150 817 150 H873 C889 150 894 130 910 130 C927 130 928 150 950 150';
 
   return (
-    <motion.div
+    <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-[-48vw] top-[47%] z-[1] h-[30rem] w-[190vw] -translate-y-1/2 opacity-[0.05] sm:right-[-16vw] sm:h-[42rem] sm:w-[100vw] sm:opacity-[0.115] lg:right-[-12vw] lg:h-[48rem] lg:w-[78vw] lg:opacity-[0.155]"
-      animate={{ y: [0, -7, 0, 5, 0] }}
-      transition={{ duration: 6.2, repeat: Infinity, ease: 'easeInOut' }}
+      className="pointer-events-none absolute right-[-48vw] top-[47%] z-[1] h-[30rem] w-[190vw] -translate-y-1/2 opacity-[0.065] sm:right-[-16vw] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
-          <filter id="ecg-soft-glow" x="-20%" y="-80%" width="140%" height="260%">
-            <feGaussianBlur stdDeviation="5.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
           <linearGradient id="ecg-fade" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stopColor="#f7efe4" stopOpacity="0" />
-            <stop offset="18%" stopColor="#f7efe4" stopOpacity="0.75" />
-            <stop offset="72%" stopColor="#f7efe4" stopOpacity="0.9" />
+            <stop offset="18%" stopColor="#f7efe4" stopOpacity="0.82" />
+            <stop offset="72%" stopColor="#f7efe4" stopOpacity="0.96" />
             <stop offset="100%" stopColor="#f7efe4" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -197,26 +174,26 @@ function ECGWaveform() {
           d={rhythmPath}
           fill="none"
           stroke="url(#ecg-fade)"
-          strokeWidth="2.55"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          opacity="0.5"
+          opacity="0.62"
         />
         <motion.path
+          className="hidden sm:block"
           d={rhythmPath}
           fill="none"
           stroke="url(#ecg-fade)"
-          strokeWidth="3.75"
+          strokeWidth="3.8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeDasharray="165 790"
-          filter="url(#ecg-soft-glow)"
+          strokeDasharray="150 800"
           initial={{ strokeDashoffset: 880 }}
           animate={{ strokeDashoffset: -880 }}
-          transition={{ duration: 4.8, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 8.5, repeat: Infinity, ease: 'linear' }}
         />
       </svg>
-    </motion.div>
+    </div>
   );
 }
 
@@ -339,59 +316,43 @@ function About() {
 }
 
 function DesktopServiceCard({ service, nextService, index, total }) {
-  const cardRef = useRef(null);
   const Icon = service.icon;
   const serviceEmailHref = `mailto:${email}?subject=${encodeURIComponent(
     `Enquiry about ${service.title}`,
   )}`;
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ['start 86%', 'end 18%'],
-  });
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 58,
-    damping: 27,
-    mass: 0.55,
-  });
-  const y = useTransform(smoothProgress, [0, 0.18, 0.5, 0.82, 1], [112, 20, 0, -22, -86]);
-  const x = useTransform(smoothProgress, [0, 0.22, 0.74, 1], [-26, 0, 0, 28]);
-  const scale = useTransform(smoothProgress, [0, 0.22, 0.72, 1], [0.94, 1, 1, 0.935]);
-  const rotateZ = useTransform(smoothProgress, [0, 0.24, 0.72, 1], [-2.2, 0, 0, 2.35]);
-  const rotateX = useTransform(smoothProgress, [0, 0.24, 0.72, 1], [3.8, 0, 0, -4.2]);
-  const opacity = useTransform(smoothProgress, [0, 0.12, 0.86, 1], [0.58, 1, 0.98, 0.62]);
-  const glowOpacity = useTransform(smoothProgress, [0, 0.22, 0.78, 1], [0.08, 0.18, 0.14, 0.06]);
 
   return (
     <div
-      ref={cardRef}
-      className={`relative ${index === 0 ? 'h-[146svh]' : index === total - 1 ? 'h-[102svh]' : 'h-[124svh]'}`}
+      className={`relative ${index === 0 ? 'h-[124svh]' : index === total - 1 ? 'h-[88svh]' : 'h-[108svh]'}`}
       style={{ zIndex: 20 + index }}
     >
-      <div className="sticky top-[6svh] flex h-[88svh] min-h-[38rem] items-center [perspective:1400px]">
+      <div className="sticky top-[7svh] flex h-[86svh] min-h-[36rem] items-center">
         <motion.article
-          style={{ opacity, scale, x, y, rotateZ, rotateX, transformStyle: 'preserve-3d' }}
           className="relative mx-auto w-full"
+          initial={{ opacity: 0, y: 40, rotate: index % 2 === 0 ? -0.8 : 0.8, scale: 0.985 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.42 }}
+          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
         >
           {nextService ? (
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-10 -bottom-8 h-24 rounded-[1.85rem] border border-linen/12 bg-[linear-gradient(145deg,rgba(180,151,124,.3),rgba(69,52,40,.72))] shadow-[0_30px_80px_rgba(44,33,25,.22)]"
+              className="pointer-events-none absolute inset-x-10 -bottom-6 h-20 rounded-[1.85rem] border border-linen/10 bg-[linear-gradient(145deg,rgba(180,151,124,.24),rgba(69,52,40,.62))] shadow-[0_20px_46px_rgba(44,33,25,.18)]"
             />
           ) : null}
 
-          <div className="relative min-h-[38rem] overflow-hidden rounded-[2rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(139,118,99,.95),rgba(91,72,57,.98)_48%,rgba(48,36,28,.98))] px-8 py-8 shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_42px_120px_rgba(44,33,25,.38)] backdrop-blur-2xl lg:min-h-[42rem] lg:px-14 lg:py-12 xl:min-h-[44rem] xl:px-[4.5rem]">
+          <div className="relative min-h-[36rem] overflow-hidden rounded-[2rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(139,118,99,.95),rgba(91,72,57,.98)_48%,rgba(48,36,28,.98))] px-8 py-8 shadow-[inset_0_1px_0_rgba(255,255,255,.14),0_28px_76px_rgba(44,33,25,.3)] lg:min-h-[40rem] lg:px-14 lg:py-12 xl:min-h-[42rem] xl:px-[4.5rem]">
             <div className={`absolute inset-x-8 top-0 h-1 rounded-full bg-gradient-to-r ${service.accent} opacity-80`} />
-            <motion.div
+            <div
               aria-hidden="true"
-              style={{ opacity: glowOpacity }}
-              className={`absolute -right-20 -top-24 h-80 w-80 rounded-full ${service.glow} blur-3xl`}
+              className={`absolute -right-20 -top-24 hidden h-72 w-72 rounded-full ${service.glow} opacity-[0.1] blur-2xl lg:block`}
             />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,248,238,.14),transparent_28rem),radial-gradient(circle_at_10%_88%,rgba(44,33,25,.32),transparent_25rem),linear-gradient(180deg,rgba(255,255,255,.08),transparent_34%,rgba(44,33,25,.2))]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,248,238,.12),transparent_26rem),linear-gradient(180deg,rgba(255,255,255,.07),transparent_34%,rgba(44,33,25,.18))]" />
 
             <div className="relative z-10 flex min-h-[inherit] flex-col">
               <div className="flex items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
-                  <div className="grid h-16 w-16 place-items-center rounded-2xl border border-linen/18 bg-linen/12 text-linen shadow-[0_18px_54px_rgba(44,33,25,.25)]">
+                  <div className="grid h-16 w-16 place-items-center rounded-2xl border border-linen/18 bg-linen/12 text-linen shadow-[0_14px_34px_rgba(44,33,25,.2)]">
                     <Icon className="h-6 w-6" />
                   </div>
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-ember/86">
@@ -426,7 +387,7 @@ function DesktopServiceCard({ service, nextService, index, total }) {
               <div className="mt-auto flex flex-wrap items-end justify-between gap-6 pt-10">
                 <a
                   href={serviceEmailHref}
-                  className="relative z-20 inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-7 py-4 text-base font-bold text-linen shadow-[0_18px_54px_rgba(44,33,25,.28)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_74px_rgba(44,33,25,.36)] focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal lg:text-lg"
+                  className="relative z-20 inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-7 py-4 text-base font-bold text-linen shadow-[0_14px_34px_rgba(44,33,25,.24)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(44,33,25,.3)] focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal lg:text-lg"
                 >
                   <Mail className="h-5 w-5" />
                   Enquire about {service.title}
@@ -452,12 +413,12 @@ function MobileServiceCard({ service, index, total }) {
 
   return (
     <Reveal>
-      <article className="relative overflow-hidden rounded-[1.65rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(139,118,99,.96),rgba(88,69,55,.98)_52%,rgba(48,36,28,.98))] p-5 shadow-[0_28px_80px_rgba(44,33,25,.34)]">
+      <article className="relative overflow-hidden rounded-[1.65rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(139,118,99,.96),rgba(88,69,55,.98)_52%,rgba(48,36,28,.98))] p-5 shadow-[0_18px_42px_rgba(44,33,25,.26)]">
         <div className={`absolute inset-x-5 top-0 h-1 rounded-full bg-gradient-to-r ${service.accent} opacity-80`} />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(255,248,238,.14),transparent_18rem),linear-gradient(180deg,rgba(255,255,255,.08),transparent_36%,rgba(44,33,25,.22))]" />
         <div className="relative z-10">
           <div className="flex items-center justify-between gap-4">
-            <div className="grid h-12 w-12 place-items-center rounded-2xl border border-linen/18 bg-linen/12 text-linen shadow-[0_16px_46px_rgba(44,33,25,.28)]">
+            <div className="grid h-12 w-12 place-items-center rounded-2xl border border-linen/18 bg-linen/12 text-linen shadow-[0_10px_26px_rgba(44,33,25,.22)]">
               <Icon className="h-5 w-5" />
             </div>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-ember/82">
@@ -472,7 +433,7 @@ function MobileServiceCard({ service, index, total }) {
 
           <a
             href={serviceEmailHref}
-            className="relative z-20 mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-5 py-3 text-sm font-bold text-linen shadow-[0_18px_60px_rgba(44,33,25,.32)] transition duration-300 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal"
+            className="relative z-20 mt-6 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-linen/20 bg-button-glow px-5 py-3 text-sm font-bold text-linen shadow-[0_12px_30px_rgba(44,33,25,.26)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-copper/70 focus:ring-offset-2 focus:ring-offset-coal"
           >
             <Mail className="h-5 w-5" />
             Enquire about {service.title}
@@ -495,16 +456,8 @@ function MobileServiceCard({ service, index, total }) {
 }
 
 function Services() {
-  const servicesRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: servicesRef,
-    offset: ['start 75%', 'end 25%'],
-  });
-  const wordY = useTransform(scrollYProgress, [0, 1], [40, -64]);
-
   return (
     <section
-      ref={servicesRef}
       className="relative pb-16 pt-10 sm:pb-24 sm:pt-14"
       id="services"
     >
@@ -535,15 +488,14 @@ function Services() {
       </div>
 
       <div className="relative hidden md:block">
-        <motion.div
+        <div
           aria-hidden="true"
-          style={{ y: wordY }}
           className="pointer-events-none sticky top-8 z-0 mx-auto -mb-28 text-center text-[10rem] font-extrabold leading-none text-linen/[.055] lg:text-[14rem]"
         >
           SERVICES
-        </motion.div>
-        <div className="pointer-events-none absolute -right-28 top-52 h-80 w-80 rounded-full bg-ember/14 blur-3xl" />
-        <div className="pointer-events-none absolute -left-28 bottom-40 h-80 w-80 rounded-full bg-ink/16 blur-3xl" />
+        </div>
+        <div className="pointer-events-none absolute -right-28 top-52 hidden h-72 w-72 rounded-full bg-ember/10 blur-2xl lg:block" />
+        <div className="pointer-events-none absolute -left-28 bottom-40 hidden h-72 w-72 rounded-full bg-ink/12 blur-2xl lg:block" />
 
         <div className="relative z-10 mx-auto w-[min(92vw,106rem)]">
           {services.map((service, index) => (
@@ -581,7 +533,7 @@ function WhyChoose() {
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-6">
         {stats.map(([value, label, copy], index) => (
           <Reveal key={label} delay={index * 0.05}>
-            <div className="h-full min-h-[18rem] rounded-[2rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(103,82,66,.92),rgba(58,43,34,.9))] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_30px_90px_rgba(44,33,25,.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-linen/34 hover:shadow-[0_38px_110px_rgba(44,33,25,.36)] sm:min-h-[21rem] sm:p-8 lg:p-9">
+            <div className="h-full min-h-[18rem] rounded-[2rem] border border-linen/20 bg-[linear-gradient(145deg,rgba(103,82,66,.92),rgba(58,43,34,.9))] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_18px_48px_rgba(44,33,25,.24)] transition duration-200 hover:-translate-y-1 hover:border-linen/34 sm:min-h-[21rem] sm:p-8 sm:backdrop-blur-md lg:p-9">
               <p className="text-[clamp(3.75rem,5.1vw,5.75rem)] font-black leading-[1.02] tracking-[-0.055em] text-ember">
                 {value}
               </p>
@@ -606,8 +558,8 @@ function CTA() {
       id="contact"
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(151,129,111,.38),rgba(70,54,43,.86)_46%,rgba(44,33,25,.96)),radial-gradient(circle_at_82%_28%,rgba(234,213,189,.18),transparent_26rem)]" />
-      <div className="pointer-events-none absolute -right-32 top-8 h-[34rem] w-[34rem] rounded-full bg-ember/14 blur-3xl" />
-      <div className="pointer-events-none absolute left-[-10vw] bottom-[-12rem] h-[28rem] w-[48rem] rounded-full bg-ink/22 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 top-8 hidden h-[30rem] w-[30rem] rounded-full bg-ember/10 blur-2xl sm:block" />
+      <div className="pointer-events-none absolute left-[-10vw] bottom-[-12rem] hidden h-[24rem] w-[42rem] rounded-full bg-ink/16 blur-2xl sm:block" />
       <div className="pointer-events-none absolute right-[-8vw] top-1/2 h-px w-[62vw] bg-[linear-gradient(90deg,transparent,rgba(247,239,228,.32),transparent)] shadow-[0_0_48px_rgba(247,239,228,.22)]" />
 
       <Reveal className="relative z-10 grid min-h-[30rem] items-center gap-12 sm:min-h-[34rem] lg:grid-cols-[minmax(0,.72fr)_minmax(18rem,.28fr)]">
@@ -640,7 +592,7 @@ function CTA() {
         </div>
 
         <div className="hidden justify-self-end lg:block">
-          <div className="rounded-[2rem] border border-linen/14 bg-linen/8 p-8 text-right shadow-glass backdrop-blur-xl">
+          <div className="rounded-[2rem] border border-linen/14 bg-linen/8 p-8 text-right shadow-[0_18px_48px_rgba(44,33,25,.22)] backdrop-blur-md">
             <p className="text-6xl font-black leading-none tracking-[-0.06em] text-linen">30+</p>
             <p className="mt-3 text-sm font-bold uppercase tracking-[0.22em] text-linen/64">
               Years Experience

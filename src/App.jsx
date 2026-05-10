@@ -145,7 +145,7 @@ function ECGWaveform() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-[-48vw] top-[47%] z-[1] h-[30rem] w-[190vw] -translate-y-1/2 opacity-[0.065] sm:right-[-16vw] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
+      className="pointer-events-none absolute right-[-48vw] top-[47%] z-[1] h-[30rem] w-[190vw] -translate-y-1/2 opacity-[0.09] sm:right-[-16vw] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
@@ -181,7 +181,6 @@ function ECGWaveform() {
           opacity="0.62"
         />
         <motion.path
-          className="hidden sm:block"
           d={rhythmPath}
           fill="none"
           stroke="url(#ecg-fade)"

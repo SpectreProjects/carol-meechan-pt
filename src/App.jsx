@@ -145,7 +145,7 @@ function ECGWaveform() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-[-42vw] top-[27%] z-[1] h-[23rem] w-[165vw] -translate-y-1/2 opacity-[0.12] sm:right-[-34vw] sm:top-[29%] sm:h-[26rem] sm:w-[148vw] sm:opacity-[0.14] md:right-[-28vw] md:top-[30%] md:h-[30rem] md:w-[132vw] md:opacity-[0.15] lg:right-[-12vw] lg:top-[47%] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
+      className="pointer-events-none absolute right-[-42vw] top-[17%] z-[1] h-[14rem] w-[165vw] -translate-y-1/2 opacity-[0.12] sm:right-[-36vw] sm:top-[17%] sm:h-[15rem] sm:w-[150vw] sm:opacity-[0.12] md:right-[-34vw] md:top-[18%] md:h-[16rem] md:w-[142vw] md:opacity-[0.12] lg:right-[-12vw] lg:top-[47%] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
@@ -226,7 +226,7 @@ function Hero() {
   return (
     <section className="relative flex min-h-[100svh] w-full overflow-hidden px-[clamp(1.25rem,5vw,6.5rem)] py-[clamp(1.25rem,3vw,3rem)]">
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_72%_36%,rgba(255,248,238,.22),transparent_26%),radial-gradient(circle_at_15%_20%,rgba(44,33,25,.2),transparent_30%)]" />
-      <div className="pointer-events-none absolute left-[-5vw] top-[8vh] z-0 text-[11rem] font-extrabold leading-none tracking-[-0.08em] text-linen/[0.08] sm:text-[18rem] lg:text-[30rem]">
+      <div className="pointer-events-none absolute left-[-5vw] top-[8vh] z-0 hidden text-[30rem] font-extrabold leading-none tracking-[-0.08em] text-linen/[0.08] lg:block">
         30
       </div>
       <ECGWaveform />
@@ -251,7 +251,7 @@ function Hero() {
             </div>
           </motion.div>
 
-          <div className="grid flex-1 items-center pt-[clamp(5.5rem,15vh,8rem)] pb-[clamp(2.5rem,6vh,5rem)] sm:pt-[clamp(6rem,14vh,9rem)] lg:grid-cols-[minmax(0,1fr)_minmax(10vw,.18fr)] lg:py-[clamp(3rem,7vh,6rem)]">
+          <div className="grid flex-1 items-center pt-[clamp(7.25rem,23vh,10rem)] pb-[clamp(2.5rem,6vh,5rem)] sm:pt-[clamp(8rem,21vh,11rem)] lg:grid-cols-[minmax(0,1fr)_minmax(10vw,.18fr)] lg:py-[clamp(3rem,7vh,6rem)]">
             <div className="max-w-[min(100%,92rem)]">
               <motion.div
                 variants={fadeUp}

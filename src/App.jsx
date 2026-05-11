@@ -145,7 +145,7 @@ function ECGWaveform() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute right-[-48vw] top-[35%] z-[1] h-[28rem] w-[185vw] -translate-y-1/2 opacity-[0.085] sm:right-[-16vw] sm:top-[47%] sm:h-[40rem] sm:w-[100vw] sm:opacity-[0.16] lg:right-[-12vw] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
+      className="pointer-events-none absolute left-1/2 top-[30%] z-[1] h-[20rem] w-[112vw] -translate-x-1/2 -translate-y-1/2 opacity-[0.1] sm:top-[31%] sm:h-[24rem] sm:w-[108vw] sm:opacity-[0.12] md:top-[32%] md:h-[28rem] md:w-[104vw] md:opacity-[0.14] lg:left-auto lg:right-[-12vw] lg:top-[47%] lg:h-[46rem] lg:w-[76vw] lg:translate-x-0 lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
@@ -219,14 +219,14 @@ function Hero() {
             <p className="text-[clamp(1.05rem,1.4vw,1.35rem)] font-extrabold uppercase tracking-[-0.04em]">
               Carol Meechan PT
             </p>
-            <div className="hidden items-center gap-[clamp(2rem,3vw,4rem)] text-[clamp(1rem,1.05vw,1.15rem)] font-semibold text-linen/76 sm:flex">
+            <div className="hidden items-center gap-[clamp(2rem,3vw,4rem)] text-[clamp(1rem,1.05vw,1.15rem)] font-semibold text-linen/76 lg:flex">
               <a href="#about" className="transition hover:text-white">About</a>
               <a href="#services" className="transition hover:text-white">Services</a>
               <a href="#contact" className="transition hover:text-white">Contact</a>
             </div>
           </motion.div>
 
-          <div className="grid flex-1 items-center py-[clamp(3rem,7vh,6rem)] lg:grid-cols-[minmax(0,1fr)_minmax(10vw,.18fr)]">
+          <div className="grid flex-1 items-center pt-[clamp(5.5rem,15vh,8rem)] pb-[clamp(2.5rem,6vh,5rem)] sm:pt-[clamp(6rem,14vh,9rem)] lg:grid-cols-[minmax(0,1fr)_minmax(10vw,.18fr)] lg:py-[clamp(3rem,7vh,6rem)]">
             <div className="max-w-[min(100%,92rem)]">
               <motion.div
                 variants={fadeUp}
@@ -237,12 +237,12 @@ function Hero() {
               </motion.div>
               <motion.h1
                 variants={fadeUp}
-                className="max-w-none font-black uppercase leading-[.78] tracking-[-0.075em] text-white"
+                className="max-w-none font-black uppercase leading-[.84] tracking-[-0.068em] text-white lg:leading-[.78] lg:tracking-[-0.075em]"
               >
-                <span className="block text-[clamp(4.2rem,19vw,6.15rem)] sm:text-[clamp(4.8rem,16.8vw,13.8rem)]">
+                <span className="block text-[clamp(3.8rem,17vw,5.65rem)] sm:text-[clamp(4.5rem,13vw,8.5rem)] lg:text-[clamp(4.8rem,16.8vw,13.8rem)]">
                   Carol
                 </span>
-                <span className="mt-2 block text-[clamp(2.75rem,12.8vw,4.45rem)] sm:mt-0 sm:text-[clamp(3.85rem,10.7vw,9.7rem)]">
+                <span className="mt-3 block text-[clamp(2.45rem,11.6vw,4.05rem)] sm:mt-4 sm:text-[clamp(3.35rem,9.7vw,6.4rem)] lg:mt-0 lg:text-[clamp(3.85rem,10.7vw,9.7rem)]">
                   Meechan PT
                 </span>
               </motion.h1>

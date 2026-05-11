@@ -145,7 +145,7 @@ function ECGWaveform() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute left-1/2 top-[30%] z-[1] h-[20rem] w-[112vw] -translate-x-1/2 -translate-y-1/2 opacity-[0.1] sm:top-[31%] sm:h-[24rem] sm:w-[108vw] sm:opacity-[0.12] md:top-[32%] md:h-[28rem] md:w-[104vw] md:opacity-[0.14] lg:left-auto lg:right-[-12vw] lg:top-[47%] lg:h-[46rem] lg:w-[76vw] lg:translate-x-0 lg:opacity-[0.2]"
+      className="pointer-events-none absolute right-[-42vw] top-[27%] z-[1] h-[23rem] w-[165vw] -translate-y-1/2 opacity-[0.12] sm:right-[-34vw] sm:top-[29%] sm:h-[26rem] sm:w-[148vw] sm:opacity-[0.14] md:right-[-28vw] md:top-[30%] md:h-[30rem] md:w-[132vw] md:opacity-[0.15] lg:right-[-12vw] lg:top-[47%] lg:h-[46rem] lg:w-[76vw] lg:opacity-[0.2]"
     >
       <svg viewBox="0 0 950 300" preserveAspectRatio="none" className="h-full w-full overflow-visible">
         <defs>
@@ -172,6 +172,17 @@ function ECGWaveform() {
         ))}
 
         <path
+          className="lg:hidden"
+          d={rhythmPath}
+          fill="none"
+          stroke="url(#ecg-fade)"
+          strokeWidth="3.45"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.7"
+        />
+        <path
+          className="hidden lg:block"
           d={rhythmPath}
           fill="none"
           stroke="url(#ecg-fade)"
@@ -181,6 +192,20 @@ function ECGWaveform() {
           opacity="0.62"
         />
         <motion.path
+          className="lg:hidden"
+          d={rhythmPath}
+          fill="none"
+          stroke="url(#ecg-fade)"
+          strokeWidth="4.15"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray="150 800"
+          initial={{ strokeDashoffset: 880 }}
+          animate={{ strokeDashoffset: -880 }}
+          transition={{ duration: 9.5, repeat: Infinity, ease: 'linear' }}
+        />
+        <motion.path
+          className="hidden lg:block"
           d={rhythmPath}
           fill="none"
           stroke="url(#ecg-fade)"
